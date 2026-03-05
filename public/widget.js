@@ -2,7 +2,7 @@
     // Inject CSS
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'http://localhost:3001/widget.css'; // Change in production to CDN
+    link.href = 'https://web-uskladenje.vercel.app/widget.css'; // Updated for production
     document.head.appendChild(link);
 
     // Create Widget Markup
@@ -138,7 +138,7 @@
     reportBtn.addEventListener('click', async () => {
         reportBtn.innerText = 'Skeniram...';
         try {
-            const res = await fetch('http://localhost:3001/api/scan', {
+            const res = await fetch('https://web-uskladenje.vercel.app/api/scan', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ url: window.location.href })

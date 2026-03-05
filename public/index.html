@@ -1,24 +1,52 @@
 <!DOCTYPE html>
 <html lang="hr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo - Web Pristupačnost</title>
     <style>
-        body { font-family: sans-serif; padding: 50px; line-height: 1.6; }
-        .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; max-width: 600px; margin: auto; }
-        h1 { color: #2c3e50; }
-        p { color: #34495e; }
-        .low-contrast { color: #eee; background: #fff; } /* Intentional accessibility issue */
-        img { max-width: 100%; border-radius: 4px; }
+        body {
+            font-family: sans-serif;
+            padding: 50px;
+            line-height: 1.6;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        p {
+            color: #34495e;
+        }
+
+        .low-contrast {
+            color: #eee;
+            background: #fff;
+        }
+
+        /* Intentional accessibility issue */
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="card">
         <h1>Demonstracija usklađenosti (NN 17/19)</h1>
         <p>Ova stranica služi za testiranje <strong>Assistance Widgeta</strong> i <strong>Axe-core skenera</strong>.</p>
-        
+
         <div class="low-contrast">
             Ovaj tekst ima jako loš kontrast i skener bi ga trebao detektirati.
         </div>
@@ -27,7 +55,7 @@
         <img src="https://picsum.photos/400/200" />
 
         <p>Kliknite na plavu ikonu u donjem desnom kutu za otvaranje alatne trake.</p>
-        
+
         <ul>
             <li><a href="#">Poveznica 1</a></li>
             <li><a href="#">Poveznica 2</a></li>
@@ -35,6 +63,7 @@
     </div>
 
     <!-- ONE LINE CODE INTEGRATION -->
-    <script src="http://localhost:3001/widget.js"></script>
+    <script src="/widget.js"></script>
 </body>
+
 </html>

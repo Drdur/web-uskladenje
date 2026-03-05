@@ -2,10 +2,8 @@
   "name": "web-accessibility-hr",
   "version": "1.0.0",
   "description": "Web accessibility solution aligned with NN 17/19",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "node api/index.js"
   },
   "dependencies": {
     "@axe-core/puppeteer": "^4.8.0",

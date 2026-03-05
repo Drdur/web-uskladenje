@@ -2,7 +2,7 @@
     // Inject CSS
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'https://web-uskladenje.vercel.app/widget.css'; // Updated for production
+    link.href = '/widget.css';
     document.head.appendChild(link);
 
     // Create Widget Markup

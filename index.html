@@ -4,66 +4,1112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo - Web Pristupačnost</title>
+    <meta name="description"
+        content="AccessHR – profesionalno rješenje za web pristupačnost usklađeno s hrvatskim Zakonom o pristupačnosti (NN 17/19) i WCAG 2.1 standardom.">
+    <title>AccessHR – Web Pristupačnost za Hrvatska Tijela Javnog Sektora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #060d1f;
+            --navy-mid: #0d1a35;
+            --navy-card: #111f3e;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --cyan: #06b6d4;
+            --accent: #f59e0b;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.04);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: sans-serif;
-            padding: 50px;
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── NAV ─────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            height: 68px;
+            background: rgba(6, 13, 31, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--blue-light);
+        }
+
+        .nav-badge {
+            font-size: 0.65rem;
+            font-weight: 600;
+            background: var(--blue);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .nav-cta:hover {
+            background: var(--blue-light);
+            transform: translateY(-1px);
+        }
+
+        /* ─── HERO ─────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 5% 80px;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37, 99, 235, 0.18) 0%, transparent 70%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--blue-light);
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero-eyebrow::before {
+            content: '●';
+            font-size: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            max-width: 820px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--blue-light) 0%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-light);
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(37, 99, 235, 0.6);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--glass);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ─── STATS BAR ─────────────────────── */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            margin: 56px auto 0;
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .stat {
+            flex: 1;
+            min-width: 160px;
+            padding: 28px 24px;
+            text-align: center;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            background: linear-gradient(135deg, #fff 0%, var(--blue-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* ─── SECTION GENERIC ─────────────── */
+        section {
+            padding: 96px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--blue-light);
+            margin-bottom: 14px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            max-width: 640px;
+            margin: 0 auto 16px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* ─── HOW IT WORKS ─────────────────── */
+        #kako-radi {
+            background: var(--navy-mid);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .step-card {
+            background: var(--navy-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 28px;
+            position: relative;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .step-num {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(6, 182, 212, 0.3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
             line-height: 1.6;
         }
 
-        .card {
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 600px;
-            margin: auto;
+        .step-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
         }
 
-        h1 {
-            color: #2c3e50;
+        /* ─── FEATURES ─────────────────────── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
-        p {
-            color: #34495e;
+        .feature-card {
+            background: var(--navy-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.25s, border-color 0.25s;
         }
 
-        .low-contrast {
-            color: #eee;
-            background: #fff;
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.35);
         }
 
-        /* Intentional accessibility issue */
-        img {
-            max-width: 100%;
-            border-radius: 4px;
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(6, 182, 212, 0.15));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .feature-badge {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* ─── CODE SNIPPET ─────────────────── */
+        #integracija {
+            background: var(--navy-mid);
+        }
+
+        .code-block-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #000d1f;
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot:nth-child(1) {
+            background: #ff5f57;
+        }
+
+        .code-dot:nth-child(2) {
+            background: #febc2e;
+        }
+
+        .code-dot:nth-child(3) {
+            background: #28c840;
+        }
+
+        .code-filename {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        .copy-btn {
+            background: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: var(--blue-light);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(37, 99, 235, 0.4);
+        }
+
+        pre {
+            padding: 28px;
+            overflow-x: auto;
+            font-family: 'Fira Code', Consolas, monospace;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: #e2e8f0;
+        }
+
+        .kw {
+            color: #c792ea;
+        }
+
+        .str {
+            color: #c3e88d;
+        }
+
+        .attr {
+            color: #82aaff;
+        }
+
+        .comment {
+            color: #546e7a;
+            font-style: italic;
+        }
+
+        /* ─── PRICING ──────────────────────── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--navy-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.featured {
+            border-color: rgba(37, 99, 235, 0.6);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.05));
+            position: relative;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .plan-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .plan-price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .plan-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin: 12px 0 28px;
+        }
+
+        .plan-features {
+            list-style: none;
+            flex: 1;
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .plan-features li {
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--cyan);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .plan-btn {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .plan-btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .plan-btn-outline:hover {
+            border-color: var(--blue-light);
+            color: var(--blue-light);
+        }
+
+        .plan-btn-primary {
+            background: var(--blue);
+            color: #fff;
+            border: none;
+            box-shadow: 0 0 24px rgba(37, 99, 235, 0.4);
+        }
+
+        .plan-btn-primary:hover {
+            background: var(--blue-light);
+        }
+
+        /* ─── LAW SECTION ─────────────────── */
+        #zakon {
+            background: var(--navy-mid);
+        }
+
+        .law-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .law-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .law-content p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .law-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .law-card {
+            background: var(--navy-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .law-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .law-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .law-card p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* ─── FOOTER ───────────────────────── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--blue-light);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ─── DEMO PAGE STYLES ─────────────── */
+        /* (the part below the nav for the demo) */
+        .demo-site-indicator {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 16px;
+            border-radius: 0 0 8px 8px;
+            z-index: 200;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .law-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                min-width: 130px;
+                padding: 20px 16px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="card">
-        <h1>Demonstracija usklađenosti (NN 17/19)</h1>
-        <p>Ova stranica služi za testiranje <strong>Assistance Widgeta</strong> i <strong>Axe-core skenera</strong>.</p>
+    <div class="demo-site-indicator">▲ DEMO STRANICA — AccessHR Widget je aktivan</div>
 
-        <div class="low-contrast">
-            Ovaj tekst ima jako loš kontrast i skener bi ga trebao detektirati.
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="nav-logo">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="8" fill="#2563eb" />
+                <path d="M14 6a3 3 0 100 6 3 3 0 000-6zM8 22v-2c0-3.3 2.7-6 6-6s6 2.7 6 6v2H8z" fill="white" />
+            </svg>
+            Access<span>HR</span>
+            <span class="nav-badge">NN 17/19</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#kako-radi">Kako radi</a></li>
+            <li><a href="#mogucnosti">Mogućnosti</a></li>
+            <li><a href="#integracija">Integracija</a></li>
+            <li><a href="#cijene">Cijene</a></li>
+            <li><a href="#zakon">Zakon</a></li>
+        </ul>
+        <a href="#integracija" class="nav-cta">Besplatno probaj</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-eyebrow">WCAG 2.1 AA · EN 301 549 · NN 17/19 usklađenost</div>
+        <h1>Web pristupačnost koja<br><em>štiti od kazni</em> i osvaja korisnike</h1>
+        <p>Jednom linijom koda dodajte toolbar za pristupačnost, automatski skener grešaka i generiranje zakonske Izjave
+            za javni sektor u Hrvatskoj.</p>
+        <div class="hero-actions">
+            <a href="#integracija" class="btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="16 18 22 12 16 6" />
+                    <polyline points="8 6 2 12 8 18" />
+                </svg>
+                Dodaj na stranicu
+            </a>
+            <a href="#kako-radi" class="btn-secondary">
+                Pogledaj demo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
         </div>
 
-        <p>Također, ova slika nema alt tekst:</p>
-        <img src="https://picsum.photos/400/200" />
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-num">25+</div>
+                <div class="stat-label">opcija prilagodbe</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">WCAG 2.1</div>
+                <div class="stat-label">AA razina usklađenosti</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">&lt;5ms</div>
+                <div class="stat-label">utjecaj na performanse</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">1 linija</div>
+                <div class="stat-label">koda za instalaciju</div>
+            </div>
+        </div>
+    </section>
 
-        <p>Kliknite na plavu ikonu u donjem desnom kutu za otvaranje alatne trake.</p>
+    <!-- HOW IT WORKS -->
+    <section id="kako-radi">
+        <div class="section-header">
+            <div class="section-eyebrow">Proces</div>
+            <h2>Od instalacije do usklađenosti za 5 minuta</h2>
+            <p>Bez tehničkog znanja. Radi na svakom CMS-u.</p>
+        </div>
+        <div class="steps">
+            <div class="step-card">
+                <div class="step-icon">📋</div>
+                <div class="step-num">01</div>
+                <h3>Registrirajte domenu</h3>
+                <p>Unesite URL vaše stranice i generirajte API ključ. Postavljeno za seniore i juniors developere
+                    podjednako.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">⚡</div>
+                <div class="step-num">02</div>
+                <h3>Zalijepite jedan redak</h3>
+                <p>Kopirajte &lt;script&gt; tag i ubacite ga u HTML vaše stranice. Toolbar se automatski prikazuje
+                    posjetiteljima.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">🔍</div>
+                <div class="step-num">03</div>
+                <h3>Automatizirani sken</h3>
+                <p>Naš axe-core motor skenira stranicu po WCAG 2.1 kriterijima i generira izvještaj na hrvatskom jeziku.
+                </p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">📄</div>
+                <div class="step-num">04</div>
+                <h3>Izjava o pristupačnosti</h3>
+                <p>Jednim klikom generira se pravno valjana Izjava u skladu sa zahtjevima NN 17/19 za tijela javnog
+                    sektora.</p>
+            </div>
+        </div>
+    </section>
 
-        <ul>
-            <li><a href="#">Poveznica 1</a></li>
-            <li><a href="#">Poveznica 2</a></li>
-        </ul>
-    </div>
+    <!-- FEATURES -->
+    <section id="mogucnosti">
+        <div class="section-header">
+            <div class="section-eyebrow">Mogućnosti</div>
+            <h2>Sve što vam treba za zakonsku usklađenost</h2>
+            <p>Kompletno rješenje koje pokriva tehničke i pravne zahtjeve.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Assistance Widget</h3>
+                <p>Elegantna plutajuća alatna traka s opcijama visokog kontrasta, promjene fonta, invertirani prikaz te
+                    font za disleksiju. Bez instaliranja dodataka.</p>
+                <span class="feature-badge">Frontend · Vanilla JS</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔊</div>
+                <h3>Čitač ekrana</h3>
+                <p>Ugrađen Web Speech API koji čita tekst na stranici na hrvatskom jeziku. Idealno za slabovidne i osobe
+                    s motoričkim poteškoćama.</p>
+                <span class="feature-badge">hr-HR · Web Speech API</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Axe-core Skener</h3>
+                <p>Industrijskim standardom podržani axe-core engine skenira WCAG 2.1 A i AA kriterije. Rezultati
+                    prikazani na hrvatskom s WCAG referencama.</p>
+                <span class="feature-badge">WCAG 2.1 A/AA · Puppeteer</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗄️</div>
+                <h3>Klijentski portal</h3>
+                <p>Supabase baza podataka prati klijente, API ključeve i status pretplate. RESTful API za integraciju s
+                    postojećim sustavima.</p>
+                <span class="feature-badge">Supabase · REST API</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Izvještaj o greškama</h3>
+                <p>Strukturirani JSON izvještaj s kategoriziranim greškama, razinom utjecaja (critical/serious/moderate)
+                    i brojem zahvaćenih elemenata.</p>
+                <span class="feature-badge">JSON · HR lokalizacija</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Pravna usklađenost HR</h3>
+                <p>Automatsko generiranje Izjave o pristupačnosti prema obrascu Ministarstva uprave. Usklađeno s EU
+                    Direktiva 2016/2102 i NN 17/19.</p>
+                <span class="feature-badge">NN 17/19 · EU 2016/2102</span>
+            </div>
+        </div>
+    </section>
 
-    <!-- ONE LINE CODE INTEGRATION -->
-    <script src="/widget.js"></script>
+    <!-- INTEGRATION CODE -->
+    <section id="integracija">
+        <div class="section-header">
+            <div class="section-eyebrow">One-line instalacija</div>
+            <h2>Kopirajte. Zalijepite. Gotovo.</h2>
+            <p>Widget se automatski učitava bez utjecaja na brzinu vaše stranice.</p>
+        </div>
+        <div class="code-block-wrap">
+            <div class="code-header">
+                <div class="code-dots">
+                    <div class="code-dot"></div>
+                    <div class="code-dot"></div>
+                    <div class="code-dot"></div>
+                </div>
+                <span class="code-filename">index.html — before &lt;/body&gt;</span>
+                <button class="copy-btn" onclick="copyCode()">Kopiraj</button>
+            </div>
+            <pre id="codeBlock"><span class="comment">&lt;!-- AccessHR Widget (NN 17/19 usklađenost) --&gt;</span>
+<span class="kw">&lt;script</span> <span class="attr">src</span>=<span class="str">"https://web-uskladenje.vercel.app/widget.js"</span>
+        <span class="attr">defer</span><span class="kw">&gt;&lt;/script&gt;</span></pre>
+        </div>
+        <p style="text-align:center; color:var(--text-muted); margin-top:24px; font-size:0.88rem;">
+            Radi na WordPress, Joomla, Drupal, custom HTML i svakom CMS-u koji prihvaća &lt;script&gt; tag.
+        </p>
+    </section>
+
+    <!-- PRICING -->
+    <section id="cijene">
+        <div class="section-header">
+            <div class="section-eyebrow">Cijene</div>
+            <h2>Transparentne cijene za svaku veličinu</h2>
+            <p>Bez skrivenih naknada. Otkazivanje kadar god. PDV није uključen.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Starter</div>
+                <div class="plan-price">Besplatno <span>/ uvijek</span></div>
+                <div class="plan-desc">Savršeno za isprobavanje i manje stranice.</div>
+                <ul class="plan-features">
+                    <li>1 domena</li>
+                    <li>Assistance Widget</li>
+                    <li>10 skenova / mjesec</li>
+                    <li>Osnovni izvještaj</li>
+                </ul>
+                <a href="#integracija" class="plan-btn plan-btn-outline">Počni besplatno</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="popular-badge">🔥 Najpopularnije</div>
+                <div class="plan-name">Professional</div>
+                <div class="plan-price">49€ <span>/ mj.</span></div>
+                <div class="plan-desc">Za tijela javnog sektora i tvrtke s punim zahtjevima.</div>
+                <ul class="plan-features">
+                    <li>Neograničene domene</li>
+                    <li>Widget + Skener + Čitač</li>
+                    <li>Neograničeni skenovi</li>
+                    <li>Izjava o pristupačnosti (HR)</li>
+                    <li>Dashboard za klijente</li>
+                    <li>Prioritetna podrška</li>
+                </ul>
+                <a href="mailto:info@accesshr.hr" class="plan-btn plan-btn-primary">Kontaktiraj nas</a>
+            </div>
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price">Po upitu</div>
+                <div class="plan-desc">Za agencije i reseller partnere.</div>
+                <ul class="plan-features">
+                    <li>White-label opcija</li>
+                    <li>API pristup</li>
+                    <li>Custom integracije</li>
+                    <li>SLA ugovor</li>
+                    <li>Dedicirani account manager</li>
+                </ul>
+                <a href="mailto:info@accesshr.hr" class="plan-btn plan-btn-outline">Pošalji upit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAW -->
+    <section id="zakon">
+        <div class="law-grid">
+            <div class="law-content">
+                <div class="section-eyebrow">Zakonski okvir</div>
+                <h2>Zašto je pristupačnost zakonska obveza?</h2>
+                <p>Zakon o pristupačnosti (NN 17/19) transponira EU Direktivu 2016/2102 u hrvatsko pravo. Sve jedinice
+                    lokalne samouprave, državne institucije i javna poduzeća obvezna su uskladiti web stranice.</p>
+                <p>Neusklađenost može rezultirati inspekcijskim nalazima i novčanim sankcijama. AccessHR pokriva sve
+                    tehničke i dokumentacijske zahtjeve.</p>
+            </div>
+            <div class="law-cards">
+                <div class="law-card">
+                    <div class="law-icon">📜</div>
+                    <div>
+                        <h4>NN 17/19 – Zakon o pristupačnosti</h4>
+                        <p>Temelj zakonske obaveze za tijela javnog sektora u RH od 2020. godine.</p>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-icon">🇪🇺</div>
+                    <div>
+                        <h4>EU Direktiva 2016/2102</h4>
+                        <p>Europska direktiva na kojoj je temeljen hrvatski zakon. Standard EN 301 549.</p>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-icon">✅</div>
+                    <div>
+                        <h4>WCAG 2.1 razina AA</h4>
+                        <p>Tehnički standard koji definira mjerljive kriterije pristupačnosti sadržaja.</p>
+                    </div>
+                </div>
+                <div class="law-card">
+                    <div class="law-icon">📋</div>
+                    <div>
+                        <h4>Izjava o pristupačnosti</h4>
+                        <p>Dokument koji svako tijelo mora objaviti i ažurirati sukladno Pravilniku.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p style="margin-bottom:12px;">
+            <a href="#">AccessHR</a> · Web pristupačnost za Hrvatsku ·
+            <a href="#">Politika privatnosti</a> ·
+            <a href="#">Izjava o pristupačnosti</a> ·
+            <a href="mailto:info@accesshr.hr">info@accesshr.hr</a>
+        </p>
+        <p style="font-size:0.75rem; opacity:0.6;">© 2026 AccessHR. Usklađeno s NN 17/19 i WCAG 2.1 AA. Sve cijene bez
+            PDV-a.</p>
+    </footer>
+
+    <script>
+        function copyCode() {
+            const code = `<!-- AccessHR Widget (NN 17/19 usklađenost) -->\n<script src="https://web-uskladenje.vercel.app/widget.js" defer><\/script>`;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = '✓ Kopirano!';
+                btn.style.background = 'rgba(16,185,129,0.3)';
+                btn.style.borderColor = 'rgba(16,185,129,0.5)';
+                btn.style.color = '#10b981';
+                setTimeout(() => {
+                    btn.textContent = 'Kopiraj';
+                    btn.style = '';
+                }, 2500);
+            });
+        }
+
+        // Animate numbers on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.step-card, .feature-card, .pricing-card, .law-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+
+    <!-- AccessHR Widget -->
+    <script src="/widget.js" defer></script>
+
 </body>
 
 </html>

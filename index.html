@@ -296,6 +296,50 @@
             font-weight: 500;
         }
 
+        /* ─── SOCIAL PROOF ─────────────────── */
+        .social-proof {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .social-proof p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .proof-logos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            opacity: 0.6;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .proof-logos:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        .proof-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+
+        .proof-logos:hover .proof-logo {
+            color: #fff;
+        }
+
         /* ─── SECTION GENERIC ─────────────── */
         section {
             padding: 96px 5%;
@@ -820,12 +864,17 @@
                 </svg>
                 Dodaj na stranicu
             </a>
-            <a href="#kako-radi" class="btn-secondary">
-                Pogledaj demo
+            <button onclick="document.body.classList.toggle('acc-dyslexic')" class="btn-secondary"
+                style="cursor:pointer">
+                Isprobaj disleksija font
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
+                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
                 </svg>
-            </a>
+            </button>
+            <button onclick="document.getElementById('accPanel').classList.toggle('active')" class="btn-secondary"
+                style="cursor:pointer; background: rgba(37,99,235,0.15); border-color: rgba(37,99,235,0.3);">
+                Otvori Widget
+            </button>
         </div>
 
         <div class="stats-bar">
@@ -845,6 +894,21 @@
                 <div class="stat-num">1 linija</div>
                 <div class="stat-label">koda za instalaciju</div>
             </div>
+        </div>
+
+        <div class="social-proof">
+            <p>Provjereno, testirano i usklađeno sa standardima javnog sektora</p>
+            <div class="proof-logos">
+                <span class="proof-logo">🇪🇺 EU 2016/2102</span>
+                <span class="proof-logo">🇭🇷 Zakon NN 17/19</span>
+                <span class="proof-logo">W3C WCAG 2.1 AA</span>
+                <span class="proof-logo">EN 301 549</span>
+            </div>
+            <p
+                style="margin-top: 24px; font-size: 0.8rem; text-transform: none; font-weight: 400; max-width: 500px; margin-inline: auto;">
+                Softver je u potpunosti usklađen za primjenu na web stranicama ministarstava, gradova, općina i
+                agencija.
+            </p>
         </div>
     </section>
 
@@ -1063,13 +1127,29 @@
 
     <!-- FOOTER -->
     <footer>
+        <div
+            style="max-width: 800px; margin: 0 auto 30px; padding: 24px; background: rgba(37,99,235,0.05); border: 1px solid rgba(37,99,235,0.15); border-radius: 12px; font-size: 0.88rem; text-align: left; line-height: 1.6;">
+            <strong
+                style="color: var(--blue-light); display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 0.95rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Pravna usklađenost i autoritet
+            </strong>
+            Softver AccessHR u potpunosti je usklađen s <strong>Direktivom (EU) 2016/2102 Europskog parlamenta i
+                Vijeća</strong> o pristupačnosti internetskih stranica i mobilnih aplikacija tijela javnog sektora te s
+            hrvatskim <strong>Zakonom o pristupačnosti mrežnim stranicama i programskim rješenjima za pokretne uređaje
+                tijela javnog sektora (NN 17/19)</strong>. Sukladnost se odnosi na tehničke zahtjeve europske norme
+            <strong>EN 301 549 V2.1.2</strong> i smjernice W3C Web Content Accessibility Guidelines (WCAG) 2.1 na AA
+            razini.
+        </div>
         <p style="margin-bottom:12px;">
-            <a href="#">AccessHR</a> · Web pristupačnost za Hrvatsku ·
+            <a href="#">AccessHR</a> · Softverski alat za tijela javnog sektora ·
             <a href="#">Politika privatnosti</a> ·
             <a href="#">Izjava o pristupačnosti</a> ·
             <a href="mailto:info@accesshr.hr">info@accesshr.hr</a>
         </p>
-        <p style="font-size:0.75rem; opacity:0.6;">© 2026 AccessHR. Usklađeno s NN 17/19 i WCAG 2.1 AA. Sve cijene bez
+        <p style="font-size:0.75rem; opacity:0.6;">© 2026 AccessHR. Sva prava pridržana. Sve cijene su izražene bez
             PDV-a.</p>
     </footer>
 

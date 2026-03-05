@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const { runScan } = require('./scanner');
-const { supabase } = require('./db');
+const { runScan } = require('./_scanner');
+const { supabase } = require('./_db');
 require('dotenv').config();
 
 const app = express();

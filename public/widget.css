@@ -1,0 +1,144 @@
+/* Accessibility Widget Styles */
+:root {
+    --acc-primary: #1a73e8;
+    --acc-bg: #ffffff;
+    --acc-text: #333333;
+    --acc-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    --acc-radius: 16px;
+}
+
+.acc-widget-trigger {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: var(--acc-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--acc-shadow);
+    z-index: 999999;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.acc-widget-trigger:hover {
+    transform: scale(1.1);
+}
+
+.acc-widget-trigger svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+
+.acc-panel {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    background: var(--acc-bg);
+    border-radius: var(--acc-radius);
+    box-shadow: var(--acc-shadow);
+    z-index: 999998;
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: accFadeIn 0.3s ease-out;
+}
+
+@keyframes accFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.acc-panel.active {
+    display: flex;
+}
+
+.acc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.acc-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--acc-text);
+}
+
+.acc-section {
+    margin-bottom: 20px;
+}
+
+.acc-section h4 {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.acc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.acc-btn {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background: #f8f9fa;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.acc-btn:hover {
+    background: #eef2ff;
+    border-color: var(--acc-primary);
+}
+
+.acc-btn.active {
+    background: var(--acc-primary);
+    color: white;
+    border-color: var(--acc-primary);
+}
+
+/* Accessibility Modes */
+body.acc-high-contrast {
+    filter: contrast(150%) !important;
+    background: black !important;
+    color: white !important;
+}
+
+body.acc-grayscale {
+    filter: grayscale(100%) !important;
+}
+
+body.acc-inverted {
+    filter: invert(100%) !important;
+    background: #000 !important;
+}
+
+body.acc-dyslexic {
+    font-family: 'OpenDyslexic', sans-serif !important;
+}
+
+@font-face {
+    font-family: 'OpenDyslexic';
+    src: url('https://antijingoist.github.io/opendyslexic/fonts/OpenDyslexic-Regular.otf');
+}

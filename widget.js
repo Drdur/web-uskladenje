@@ -2,7 +2,7 @@
     // Inject CSS
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/widget.css';
+    link.href = 'https://web-uskladenje.vercel.app/widget.css';
     document.head.appendChild(link);
 
     // Create Widget Markup
@@ -140,7 +140,10 @@
         try {
             const res = await fetch('https://web-uskladenje.vercel.app/api/scan', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': window.ACCESSHR_API_KEY || ''
+                },
                 body: JSON.stringify({ url: window.location.href })
             });
             const data = await res.json();

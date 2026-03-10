@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generator Izjave o Pristupačnosti usklađen sa Zakonom NN 17/19.">
+    <title>Generator Izjave o Pristupačnosti | AccessHR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #060d1f;
+            --navy-mid: #0d1a35;
+            --navy-card: #111f3e;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --cyan: #06b6d4;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.04);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            height: 68px;
+            background: rgba(6, 13, 31, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--blue-light);
+        }
+
+        .nav-cta {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 7px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+
+        .nav-cta:hover {
+            border-color: var(--blue-light);
+            color: var(--blue-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 120px auto 60px;
+            padding: 0 5%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .card {
+            background: var(--navy-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--blue-light);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-generate {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-generate:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        #result-box {
+            display: none;
+        }
+
+        textarea {
+            width: 100%;
+            height: 350px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--blue-light);
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+
+        .btn-copy {
+            background: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            color: var(--blue-light);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: rgba(37, 99, 235, 0.4);
+        }
+
+        @media(max-width: 600px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/" class="nav-logo">
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="8" fill="#2563eb" />
+                <path d="M14 6a3 3 0 100 6 3 3 0 000-6zM8 22v-2c0-3.3 2.7-6 6-6s6 2.7 6 6v2H8z" fill="white" />
+            </svg>
+            Access<span>HR</span>
+        </a>
+        <a href="/" class="nav-cta">← Povratak na stranicu</a>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <div
+                style="font-size:0.8rem; letter-spacing:1px; text-transform:uppercase; color:var(--blue-light); font-weight:700; margin-bottom:10px;">
+                Sluzbeni Obrazac</div>
+            <h1>Generator Izjave o Pristupačnosti</h1>
+            <p>Popunite podatke o vašoj instituciji kako biste generirali punu <strong>Izjavu o pristupačnosti</strong>
+                sukladno Zakonu o pristupačnosti (NN 17/19).</p>
+        </div>
+
+        <div class="card" id="form-box">
+            <div class="form-group">
+                <label>Naziv tijela javnog sektora</label>
+                <input type="text" id="ime"
+                    placeholder="npr. Općina XYZ, Grad Zagreb, Osnovna škola Ivan Goran Kovačić..." required>
+            </div>
+            <div class="form-group">
+                <label>URL web sjedišta</label>
+                <input type="url" id="url" placeholder="npr. https://www.opcina-xyz.hr" required>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label>E-mail za prigovore (službenik za inf.)</label>
+                    <input type="email" id="email" placeholder="npr. info@opcina-xyz.hr" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon za prigovore</label>
+                    <input type="text" id="telefon" placeholder="npr. +385 1 234 567" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label>Adresa i sjedište</label>
+                    <input type="text" id="adresa" placeholder="npr. Trg Stjepana Radića 1, 10000 Zagreb" required>
+                </div>
+                <div class="form-group">
+                    <label>Datum zadnjeg testiranja pristupačnosti</label>
+                    <input type="date" id="datum" required>
+                </div>
+            </div>
+
+            <button class="btn-generate" onclick="generateStatement()">Generiraj Izjavu</button>
+        </div>
+
+        <div class="card" id="result-box">
+            <h3 style="margin-bottom:20px; font-weight:700;">Vaša Izjava o Pristupačnosti (HTML kod)</h3>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">
+                Prekopirajte ovaj kod i zalijepite ga na novu stranicu naziva "Izjava o pristupačnosti" (ili
+                "Pristupačnost") na vašem web sjedištu, a poveznicu stavite u podnožje (footer) stranice.
+            </p>
+            <textarea id="outputHtml" readonly></textarea>
+
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <button class="btn-copy" onclick="copyHtml()">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Kopiraj HTML Kod
+                </button>
+                <button class="nav-cta" onclick="resetForm()"
+                    style="background:transparent; cursor:pointer; color:var(--text-muted); border-color:var(--border);">Uredi
+                    podatke</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AccessHR Widget preview -->
+    <script src="https://web-uskladenje.vercel.app/widget.js" defer></script>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('datum').valueAsDate = new Date();
+
+        function generateStatement() {
+            const ime = document.getElementById('ime').value.trim() || '[Naziv Tijela]';
+            const url = document.getElementById('url').value.trim() || '[URL adresa]';
+            const email = document.getElementById('email').value.trim() || '[E-mail adresa]';
+            const telefon = document.getElementById('telefon').value.trim() || '[Broj telefona]';
+            const adresa = document.getElementById('adresa').value.trim() || '[Adresa sjedišta]';
+
+            const rawDate = document.getElementById('datum').value;
+            let dateStr = '[Datum]';
+            if (rawDate) {
+                const d = new Date(rawDate);
+                dateStr = d.toLocaleDateString('hr-HR');
+            }
+
+            const template = `<h2>IZJAVA O PRISTUPAČNOSTI</h2>
+
+<p><strong>${ime}</strong> nastoji svoje mrežno sjedište učiniti pristupačnim u skladu sa Zakonom o pristupačnosti mrežnim stranicama i programskim rješenjima za pokretne uređaje tijela javnog sektora Republike Hrvatske („Narodne novine“, broj 17/19; dalje u tekstu: Zakon) kojim se prenosi Direktiva (EU) 2016/2102 Europskog parlamenta i Vijeća od 26. listopada 2016. o pristupačnosti internetskih stranica i mobilnih aplikacija tijela javnog sektora (SL L 327, 2.12.2016.).</p>
+
+<p>Ova Izjava o pristupačnosti primjenjuje se na mrežno sjedište: <a href="${url}">${url}</a>.</p>
+
+<h3>Stupanj usklađenosti</h3>
+<p>Ovo mrežno sjedište djalomično je usklađeno sa Zakonom i smjernicama WCAG 2.1 zbog neusklađenosti koje su navedene u nastavku. ${ime} kontinuirano radi na otklanjanju uočenih neusklađenosti.</p>
+
+<h3>Nepristupačni sadržaj</h3>
+<p>Sadržaj naveden u nastavku je nepristupačan iz sljedećih razloga:<br>
+- Pojedine slike i grafički elementi nemaju prikladan tekstualni opis (alt atribut).<br>
+- Određeni PDF dokumenti objavljeni prije 23. rujna 2018. nisu u potpunosti prilagođeni čitačima ekrana.<br>
+- Na stranici je prisutan dinamički sadržaj koji nije u potpunosti čitljiv programima za glasovno čitanje.</p>
+
+<h3>Priprema ove izjave o pristupačnosti</h3>
+<p>Ova je izjava sastavljena dana ${dateStr}.</p>
+<p>Kao mehanizam procjene pristupačnosti korištena je metoda samoprocjene te automatizirani alati za provjeru pristupačnosti, uključujući ugrađeni sustav <a href="https://web-uskladenje.vercel.app/" target="_blank">AccessHR</a>.<br>
+Izjava je zadnji put preispitana ${dateStr}.</p>
+
+<h3>Povratne informacije i podaci za kontakt</h3>
+<p>Molimo korisnike ovih mrežnih stranica ako primijete neusklađen sadržaj, koji nije obuhvaćen ovom izjavom, da o tome obavijeste <strong>${ime}</strong>.<br>
+Sve upite vezane uz pristupačnu mrežnih stranica ${ime} korisnici mogu uputiti Službeniku za informiranje:</p>
+<ul>
+    <li>E-poštom: <a href="mailto:${email}">${email}</a></li>
+    <li>Telefonom: ${telefon}</li>
+    <li>Poštom: ${ime}, ${adresa}</li>
+</ul>
+
+<h3>Postupak praćenja provedbe propisa</h3>
+<p>Tijelo nadležno za praćenje usklađenosti mrežnih stranica i programskih rješenja za pokretne uređaje tijela javnog sektora sa zahtjevima pristupačnosti i nadzor nad provedbom Zakona je <strong>Povjerenik za informiranje Republike Hrvatske</strong>.</p>
+<p>U slučaju nezadovoljavajućih odgovora na obavijest ili zahtjev za povratne informacije o pristupačnosti ovih mrežnih stranica, korisnici se mogu obratiti Povjereniku za informiranje putem elektroničke pošte: <a href="mailto:pristupacnost@pristupinfo.hr">pristupacnost@pristupinfo.hr</a>.</p>`;
+
+            document.getElementById('form-box').style.display = 'none';
+            const resultBox = document.getElementById('result-box');
+            resultBox.style.display = 'block';
+            document.getElementById('outputHtml').value = template;
+
+            // Scroll to top gently
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            document.getElementById('result-box').style.display = 'none';
+            document.getElementById('form-box').style.display = 'block';
+        }
+
+        function copyHtml() {
+            const textarea = document.getElementById('outputHtml');
+            textarea.select();
+            document.execCommand('copy');
+
+            const btn = document.querySelector('.btn-copy');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✓ Kopirano';
+            btn.style.background = 'rgba(16,185,129,0.3)';
+            btn.style.color = '#10b981';
+            btn.style.borderColor = 'rgba(16,185,129,0.5)';
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style = '';
+            }, 2500);
+        }
+    </script>
+</body>
+
+</html>
